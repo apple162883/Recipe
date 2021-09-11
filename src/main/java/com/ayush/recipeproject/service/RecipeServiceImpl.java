@@ -1,5 +1,8 @@
 package com.ayush.recipeproject.service;
 
+import com.ayush.recipeproject.command.RecipeCommand;
+import com.ayush.recipeproject.converter.RecipeCommandToRecipe;
+import com.ayush.recipeproject.converter.RecipeToRecipeCommand;
 import com.ayush.recipeproject.entity.Recipe;
 import com.ayush.recipeproject.repository.RecipeRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -13,9 +16,13 @@ import java.util.Set;
 @Service
 public class RecipeServiceImpl implements RecipeService {
     private final RecipeRepository recipeRepository;
+    private final RecipeToRecipeCommand recipeToRecipeCommand;
+    private final RecipeCommandToRecipe recipeCommandToRecipe;
 
-    public RecipeServiceImpl(RecipeRepository recipeRepository) {
+    public RecipeServiceImpl(RecipeRepository recipeRepository, RecipeToRecipeCommand recipeToRecipeCommand, RecipeCommandToRecipe recipeCommandToRecipe) {
         this.recipeRepository = recipeRepository;
+        this.recipeToRecipeCommand = recipeToRecipeCommand;
+        this.recipeCommandToRecipe = recipeCommandToRecipe;
     }
 
     @Override
@@ -34,5 +41,12 @@ public class RecipeServiceImpl implements RecipeService {
             throw new RuntimeException("Id does not match");
         }
         return recipeOptional.get();
+    }
+
+    @Override
+    public RecipeCommand saveRecipeCommand(RecipeCommand recipeCommand) {
+        Recipe detachedRecipe = recipeCommandToRecipe.convert(recipeCommand);
+        Recipe savedRecipe = recipeRepository.save(detachedRecipe);
+        return recipeToRecipeCommand.convert(savedRecipe);
     }
 }
