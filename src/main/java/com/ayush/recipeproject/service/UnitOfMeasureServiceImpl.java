@@ -4,6 +4,7 @@ import com.ayush.recipeproject.command.UnitOfMeasureCommand;
 import com.ayush.recipeproject.converter.UOMToUOMCommand;
 import com.ayush.recipeproject.repository.UnitOfMeasureRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -20,6 +21,7 @@ public class UnitOfMeasureServiceImpl implements UnitOfMeasureService {
     }
 
     @Override
+    @Transactional
     public Set<UnitOfMeasureCommand> listAllUoms() {
         return StreamSupport.stream(unitOfMeasureRepository.findAll()
                         .spliterator(), false)

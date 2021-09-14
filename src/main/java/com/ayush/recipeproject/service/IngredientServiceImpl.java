@@ -39,6 +39,7 @@ public class IngredientServiceImpl implements IngredientService {
     }
 
     @Override
+    @org.springframework.transaction.annotation.Transactional
     public IngredientCommand saveIngredientCommand(IngredientCommand command) {
         Optional<Recipe> recipeOptional = recipeRepository.findById(command.getRecipeId());
         if (!recipeOptional.isPresent()) {
