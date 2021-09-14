@@ -58,5 +58,11 @@ public class RecipeServiceImpl implements RecipeService {
         return recipeToRecipeCommand.convert(findById(id));
     }
 
+    @Override
+    @org.springframework.transaction.annotation.Transactional
+    public void deleteById(Long id) {
+        recipeRepository.deleteById(id);
+    }
+
 
 }
