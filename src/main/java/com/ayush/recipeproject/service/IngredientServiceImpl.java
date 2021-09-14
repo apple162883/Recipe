@@ -6,6 +6,7 @@ import com.ayush.recipeproject.entity.Recipe;
 import com.ayush.recipeproject.repository.RecipeRepository;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.Optional;
 
 @Service
@@ -19,6 +20,7 @@ public class IngredientServiceImpl implements IngredientService{
     }
 
     @Override
+    @Transactional
     public IngredientCommand findByRecipeIdAndIngredientId(Long recipeId, Long id) {
         Optional<Recipe> recipeOptional =  recipeRepository.findById(recipeId);
         Recipe recipe = recipeOptional.get();
