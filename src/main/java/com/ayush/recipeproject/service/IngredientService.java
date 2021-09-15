@@ -5,4 +5,5 @@ import com.ayush.recipeproject.command.IngredientCommand;
 public interface IngredientService {
     IngredientCommand findByRecipeIdAndIngredientId(Long recipeId, Long id);
     IngredientCommand saveIngredientCommand(IngredientCommand command);
+    void deleteById(Long recipeId, Long idToDelete);
 }
