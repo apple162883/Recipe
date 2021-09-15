@@ -3,7 +3,6 @@ package com.ayush.recipeproject.converter;
 import com.ayush.recipeproject.command.CategoryCommand;
 import com.ayush.recipeproject.command.IngredientCommand;
 import com.ayush.recipeproject.command.RecipeCommand;
-import com.ayush.recipeproject.entity.Category;
 import com.ayush.recipeproject.entity.Recipe;
 import lombok.Synchronized;
 import org.springframework.core.convert.converter.Converter;
@@ -32,7 +31,7 @@ public class RecipeCommandToRecipe implements Converter<RecipeCommand, Recipe> {
         final Recipe recipe = new Recipe();
         recipe.setDifficulty(source.getDifficulty());
         recipe.setDirection(source.getDirection());
-        recipe.setNotes(notesConverter.convert(source.getNotesCommand()));
+        recipe.setNotes(notesConverter.convert(source.getNotes()));
         recipe.setDescription(source.getDescription());
         recipe.setSource(source.getSource());
         recipe.setUrl(source.getUrl());

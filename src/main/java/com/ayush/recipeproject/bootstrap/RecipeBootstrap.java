@@ -72,13 +72,19 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
 
         Optional<UnitOfMeasure> tablespoonOptional = unitOfMeasureRepository.findByUom("Tablespoon");
         Optional<UnitOfMeasure> teaspoonOptional = unitOfMeasureRepository.findByUom("Teaspoon");
-        Optional<UnitOfMeasure> eachOptional = unitOfMeasureRepository.findByUom("Each");
         Optional<UnitOfMeasure> cupOptional = unitOfMeasureRepository.findByUom("Cup");
+        Optional<UnitOfMeasure> pinchOptional = unitOfMeasureRepository.findByUom("Pinch");
+        Optional<UnitOfMeasure> ounceOptional = unitOfMeasureRepository.findByUom("Ounce");
+        Optional<UnitOfMeasure> eachOptional = unitOfMeasureRepository.findByUom("Each");
+        Optional<UnitOfMeasure> dashOptional = unitOfMeasureRepository.findByUom("Dash");
         Optional<UnitOfMeasure> pintOptional = unitOfMeasureRepository.findByUom("Pint");
         UnitOfMeasure tableUom = tablespoonOptional.get();
         UnitOfMeasure teaUom = teaspoonOptional.get();
-        UnitOfMeasure eachUom = eachOptional.get();
         UnitOfMeasure cupUom = cupOptional.get();
+        UnitOfMeasure pinchUom = pinchOptional.get();
+        UnitOfMeasure ounceUom = ounceOptional.get();
+        UnitOfMeasure eachUom = eachOptional.get();
+        UnitOfMeasure dashUom = dashOptional.get();
         UnitOfMeasure pintUom = pintOptional.get();
 
         Optional<Category> americanOptional = categoryRepository.findByDescription("American");
