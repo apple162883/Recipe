@@ -17,7 +17,6 @@ public class IngredientCommandToIngredient implements Converter<IngredientComman
     }
 
     @Nullable
-    @Synchronized
     @Override
     public Ingredient convert(IngredientCommand source) {
         if(source == null){

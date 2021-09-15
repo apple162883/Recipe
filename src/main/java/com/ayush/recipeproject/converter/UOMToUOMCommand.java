@@ -13,12 +13,13 @@ public class UOMToUOMCommand implements Converter<UnitOfMeasure, UnitOfMeasureCo
     @Synchronized
     @Override
     public UnitOfMeasureCommand convert(UnitOfMeasure source) {
-        if(source == null){
-            return null;
+        if (source != null) {
+            final UnitOfMeasureCommand unitOfMeasureCommand = new UnitOfMeasureCommand();
+            unitOfMeasureCommand.setId(source.getId());
+            unitOfMeasureCommand.setUom(source.getUom());
+            return unitOfMeasureCommand;
         }
-        final UnitOfMeasureCommand unitOfMeasureCommand = new UnitOfMeasureCommand();
-        unitOfMeasureCommand.setId(source.getId());
-        unitOfMeasureCommand.setUom(source.getUom());
-        return unitOfMeasureCommand;
+        else
+            return null;
     }
 }

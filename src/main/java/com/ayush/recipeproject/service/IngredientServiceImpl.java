@@ -8,8 +8,8 @@ import com.ayush.recipeproject.entity.Recipe;
 import com.ayush.recipeproject.repository.RecipeRepository;
 import com.ayush.recipeproject.repository.UnitOfMeasureRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.util.Optional;
 
 @Service
@@ -27,7 +27,6 @@ public class IngredientServiceImpl implements IngredientService {
     }
 
     @Override
-    @Transactional
     public IngredientCommand findByRecipeIdAndIngredientId(Long recipeId, Long id) {
         Optional<Recipe> recipeOptional = recipeRepository.findById(recipeId);
         Recipe recipe = recipeOptional.get();
@@ -39,7 +38,7 @@ public class IngredientServiceImpl implements IngredientService {
     }
 
     @Override
-    @org.springframework.transaction.annotation.Transactional
+    @Transactional
     public IngredientCommand saveIngredientCommand(IngredientCommand command) {
         Optional<Recipe> recipeOptional = recipeRepository.findById(command.getRecipeId());
         if (!recipeOptional.isPresent()) {
@@ -58,8 +57,8 @@ public class IngredientServiceImpl implements IngredientService {
                 ingredientFound.setDescription(command.getDescription());
                 ingredientFound.setAmount(command.getAmount());
                 ingredientFound.setUnitOfMeasure(unitOfMeasureRepository
-                        .findById(command.getUnitOfMeasure().getId())
-                        .orElseThrow(() -> new RuntimeException("UOM NOT FOUND")));//todo address this
+                                .findById(command.getUnitOfMeasure().getId())
+                        .orElseThrow(() -> new RuntimeException("UOM NOT FOUND")));
             } else {
                 //add new Ingredient
                 recipe.addIngredient(ingredientCommandToIngredient.convert(command));
@@ -74,5 +73,6 @@ public class IngredientServiceImpl implements IngredientService {
                     .get());
         }
     }
+
 }
 

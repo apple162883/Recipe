@@ -26,4 +26,12 @@ public class RecipeCommand {
     private NotesCommand notes;
     private Set<IngredientCommand> ingredients = new HashSet<>();
     private Set<CategoryCommand> categories = new HashSet<>();
+
+    public NotesCommand getNotes() {
+        return notes;
+    }
+
+    public void setNotes(NotesCommand notes) {
+        this.notes = notes;
+    }
 }
