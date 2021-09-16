@@ -3,7 +3,6 @@ package com.ayush.recipeproject.controller;
 import com.ayush.recipeproject.command.RecipeCommand;
 import com.ayush.recipeproject.exceptions.NotFoundException;
 import com.ayush.recipeproject.service.RecipeService;
-import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -53,6 +52,16 @@ public class RecipeController {
         log.error(exception.getMessage());
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("404error");
+        modelAndView.addObject("exception",exception);
+        return modelAndView;
+    }
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(NumberFormatException.class)
+    public ModelAndView numberFormatException(Exception exception){
+        log.error("Bad Request");
+        log.error(exception.getMessage());
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("400error");
         modelAndView.addObject("exception",exception);
         return modelAndView;
     }
