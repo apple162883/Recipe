@@ -4,6 +4,7 @@ import com.ayush.recipeproject.command.RecipeCommand;
 import com.ayush.recipeproject.converter.RecipeCommandToRecipe;
 import com.ayush.recipeproject.converter.RecipeToRecipeCommand;
 import com.ayush.recipeproject.entity.Recipe;
+import com.ayush.recipeproject.exceptions.NotFoundException;
 import com.ayush.recipeproject.repository.RecipeRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -39,7 +40,7 @@ public class RecipeServiceImpl implements RecipeService {
         Optional<Recipe> recipeOptional = recipeRepository.findById(id);
         if(!recipeOptional.isPresent())
         {
-            throw new RuntimeException("Id does not match");
+            throw new NotFoundException("Recipe Not Found");
         }
         return recipeOptional.get();
     }
